@@ -3,23 +3,23 @@
  * кнопки скрытия/показа колонки в мобильной версии сайта
  * и за кнопки меню
  * */
-class Sidebar {
+// class Sidebar {
   /**
    * Запускает initAuthLinks и initToggleButton
    * */
-  static init() {
-    this.initAuthLinks();
-    this.initToggleButton();
-  }
+  // static init() {
+  //   this.initAuthLinks();
+  //   this.initToggleButton();
+  // }
 
   /**
    * Отвечает за скрытие/показа боковой колонки:
    * переключает два класса для body: sidebar-open и sidebar-collapse
    * при нажатии на кнопку .sidebar-toggle
    * */
-  static initToggleButton() {
+  // static initToggleButton() {
 
-  }
+  // }
 
   /**
    * При нажатии на кнопку входа, показывает окно входа
@@ -28,7 +28,63 @@ class Sidebar {
    * При нажатии на кнопку выхода вызывает User.logout и по успешному
    * выходу устанавливает App.setState( 'init' )
    * */
-  static initAuthLinks() {
+//   static initAuthLinks() {
 
+//   }
+// }
+
+class Sidebar {
+  static init() {
+    this.initAuthLinks();
+    this.initToggleButton();
+  }
+
+  static initToggleButton() {
+    const toggleButton = document.querySelector('.sidebar-toggle');
+    
+    if (toggleButton) {
+      toggleButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        document.body.classList.toggle('sidebar-open');
+        document.body.classList.toggle('sidebar-collapse');
+      });
+    }
+  }
+
+  static initAuthLinks() {
+    const loginButton = document.querySelector('.menu-item_login a');
+    const registerButton = document.querySelector('.menu-item_register a');
+    const logoutButton = document.querySelector('.menu-item_logout a');
+    
+    if (loginButton) {
+      loginButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        const loginModal = App.getModal('login');
+        if (loginModal) {
+          loginModal.open();
+        }
+      });
+    }
+    
+    if (registerButton) {
+      registerButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        const registerModal = App.getModal('register');
+        if (registerModal) {
+          registerModal.open();
+        }
+      });
+    }
+    
+    if (logoutButton) {
+      logoutButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        User.logout((err, response) => {
+          if (response && response.success) {
+            App.setState('init');
+          }
+        });
+      });
+    }
   }
 }

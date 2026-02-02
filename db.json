@@ -220,6 +220,15 @@
       "account_id": "1bsydfciomkqz1s3p",
       "user_id": "1bsydfamwmkqyvn4y",
       "created_at": "2026-01-29T13:19:38.731Z"
+    },
+    {
+      "id": "1bsydfzsml5busqo",
+      "type": "income",
+      "name": "Яблоки",
+      "sum": 40000,
+      "account_id": "1bsydfciomkqz1s3p",
+      "user_id": "1bsydfamwmkqyvn4y",
+      "created_at": "2026-02-02T15:31:22.751Z"
     }
   ]
 }
